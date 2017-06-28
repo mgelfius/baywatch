@@ -15,6 +15,7 @@ const app = {
     renderListItem(flick){
         const item = document.createElement('li')
         item.textContent = flick.name
+        this.flicks[flick.id - 1] = flick.name
         return item
     },
 
