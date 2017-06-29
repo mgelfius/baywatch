@@ -18,7 +18,10 @@ const app = {
         item.classList.remove('template')
         item.id = flick.name
         item.querySelector('.flick-name')
-          .textContent = flick.name
+            .textContent = flick.name
+        
+        item.querySelector("button.remove")
+            .addEventListener('click', this.delete)
         item.dataset.id = flick.id
 
         this.flicks.unshift(flick)
@@ -47,44 +50,44 @@ const app = {
         f.reset()
     },
 
-    renderFavButton(item){
-        const fav = document.createElement('button')
-        fav.textContent = "Fav"
-        fav.className = "warning button"
-        fav.id = `${item.textContent}Fav`
-        return fav
-    },
+    // renderFavButton(item){
+    //     const fav = document.createElement('button')
+    //     fav.textContent = "Fav"
+    //     fav.className = "warning button"
+    //     fav.id = `${item.textContent}Fav`
+    //     return fav
+    // },
 
-    renderDelButton(item){
-        const del = document.createElement('button')
-        del.textContent = "Delete"
-        del.className = 'alert button'
-        del.id = `${item.textContent}Del`
-        return del 
-    },
+    // renderDelButton(item){
+    //     const del = document.createElement('button')
+    //     del.textContent = "Delete"
+    //     del.className = 'alert button'
+    //     del.id = `${item.textContent}Del`
+    //     return del 
+    // },
 
     sayYeah(){
         alert("Yeah!")
     },
 
-    renderUpButton(item){
-        const up = document.createElement('button')
-        up.textContent = "Up"
-        up.className = 'primary button'
-        up.id = `${item.textContent}Up`
+    // renderUpButton(item){
+    //     const up = document.createElement('button')
+    //     up.textContent = "Up"
+    //     up.className = 'primary button'
+    //     up.id = `${item.textContent}Up`
 
-        return up 
-    },
+    //     return up 
+    // },
 
-    renderDownButton(item){
-        const down = document.createElement('button')
-        down.textContent = "Down"
-        down.className = 'secondary button'
-        down.id = `${item.textContent}Down`
-        return down 
-    },
+    // renderDownButton(item){
+    //     const down = document.createElement('button')
+    //     down.textContent = "Down"
+    //     down.className = 'secondary button'
+    //     down.id = `${item.textContent}Down`
+    //     return down 
+    // },
 
-    favorite(item){
+    favorite(ev){
         console.log(this.style.backgroundColor)
         if(this.style.backgroundColor){
             if(this.style.backgroundColor === "gold"){
@@ -102,18 +105,17 @@ const app = {
         }
     },
 
-    delete(item){
+    delete(ev){
         console.log(app.flicks)
-        this.parentNode.parentNode.removeChild(this.parentNode)
-        //app.flicks.splice(this.id - 1, 1)
-        //console.log(app.flicks)
+        const listItem = ev.target.closest('.flick')
+        listItem.remove()
     },
 
-    moveUp(item){
+    moveUp(ev){
 
     },
 
-    moveDown(item){
+    moveDown(ev){
 
     },
 }
