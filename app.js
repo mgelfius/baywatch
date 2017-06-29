@@ -44,8 +44,11 @@ const app = {
 
         document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
         document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
+        document.getElementById(`${listItem.id}Up`).addEventListener("click", app.moveUp)
+        document.getElementById(`${listItem.id}Down`).addEventListener("click", app.moveDown)
 
         ++this.max
+        f.reset()
     },
 
     renderFavButton(item){
@@ -107,6 +110,14 @@ const app = {
         this.parentNode.parentNode.removeChild(this.parentNode)
         //app.flicks.splice(this.id - 1, 1)
         //console.log(app.flicks)
+    },
+
+    moveUp(item){
+
+    },
+
+    moveDown(item){
+
     },
 }
 

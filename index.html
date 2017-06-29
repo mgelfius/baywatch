@@ -2,6 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Michael Baywatch</title>
     <meta name="description" content="">
@@ -12,7 +13,7 @@
   <body>
     <div class="grid-x">
       <div class="medium-8 medium-offset-2 cell">
-        <h1><b>Michael Baywatch</b></h1>
+        <h1>The <small>(Michael)</small> Baywatch</h1>
         <form id="flick-form">
           <div class="input-group">
             <input
@@ -20,6 +21,8 @@
               class="input-group-field"
               name="flickName"
               placeholder="Name a flick"
+              autofocus
+              required
             >
             <div class="input-group-button">
               <button
@@ -35,7 +38,7 @@
     </div>
 
     <div class="grid-x">
-      <div class="medium-8 medium-offset-2 cell">
+      <div class="medium-8 medium-offset-2 cell list-container">
         <ul id="flick-list"></ul>
       </div>
     </div>

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+
+h1{
+    font-family: 'Alfa Slab One', serif;
+    color: orange;
+    text-shadow: 0.2rem 0.2rem teal;
+}
+
+h1 small{
+    color: teal;
+    text-shadow: 0.2rem 0.2rem orange;
+    font-size: 50%;
+}
+
+.list-container{
+    
+}
