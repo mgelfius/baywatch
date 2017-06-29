@@ -16,7 +16,9 @@ const app = {
         const item = document.createElement('li')
         item.id = flick.name
         item.textContent = flick.name
-        this.flicks[flick.id - 1] = flick.name
+        item.dataset.id = flick.id
+
+        this.flicks.push(flick)
         item.style.backgroundColor = 'white'
         const fav = this.renderFavButton(item)
         const del = this.renderDelButton(item)
