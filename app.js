@@ -16,6 +16,16 @@ const app = {
         const item = document.createElement('li')
         item.textContent = flick.name
         this.flicks[flick.id - 1] = flick.name
+        item.backgroundColor = 'white'
+        item.id = `flick${flick.id}`
+        const fav = this.renderFavButton()
+        const del = this.renderDelButton()
+        const up = this.renderUpButton()
+        const down = this.renderDownButton()
+        item.appendChild(fav)
+        item.appendChild(up)
+        item.appendChild(down)
+        item.appendChild(del)
         return item
     },
 
@@ -31,6 +41,49 @@ const app = {
         this.list.appendChild(listItem)
 
         ++this.max
+    },
+
+    renderFavButton(){
+        const fav = document.createElement('button')
+        fav.textContent = "Fav"
+        fav.className = "warning button"
+        return fav
+    },
+
+    renderDelButton(){
+        const del = document.createElement('button')
+        del.textContent = "Delete"
+        del.className = 'alert button'
+        return del 
+    },
+
+    renderUpButton(){
+        const up = document.createElement('button')
+        up.textContent = "Up"
+        up.className = 'secondary button'
+        return up 
+    },
+
+    renderDownButton(){
+        const down = document.createElement('button')
+        down.textContent = "Down"
+        down.className = 'secondary button'
+        return down 
+    },
+
+    favorite(item){
+        if(item.style.backgroundColor){
+            if(item.style.backgroundColor === white){
+                console.log('Shit')
+                item.style.backgroundColor = 'white'
+            }else{
+                console.log('Yay!')
+                item.style.backgroundColor = 'gold'
+            }
+        }else{
+            item.style.backgroundColor = 'gold'
+        }
+        
     },
 }
 
