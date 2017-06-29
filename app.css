@@ -27,3 +27,7 @@ h1 small{
 .flick .button-group .button{
     margin-bottom: 0;
 }
+
+.template{
+    display: none;
+}

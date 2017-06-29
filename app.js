@@ -3,6 +3,7 @@ const app = {
         this.flicks = []
         this.max = 0;
         this.list = document.querySelector(selectors.listSelector)
+        this.template = document.querySelector(selectors.templateSelector)
         
         document
             .querySelector(selectors.formSelector)
@@ -13,23 +14,16 @@ const app = {
     },
 
     renderListItem(flick){
-        const item = document.createElement('li')
+        const item = this.template.cloneNode(true)
+        item.classList.remove('template')
         item.id = flick.name
-        item.textContent = flick.name
+        item.querySelector('.flick-name')
+          .textContent = flick.name
         item.dataset.id = flick.id
 
         this.flicks.unshift(flick)
         item.style.backgroundColor = 'white'
-        const fav = this.renderFavButton(item)
-        const del = this.renderDelButton(item)
-        const up = this.renderUpButton(item)
-        const down = this.renderDownButton(item)
-
-        item.appendChild(fav)
-        item.appendChild(up)
-        item.appendChild(down)
-        item.appendChild(del)
-
+    
         return item
     },
 
@@ -44,10 +38,10 @@ const app = {
         const listItem = this.renderListItem(flick)
         this.list.insertBefore(listItem, this.list.firstElementChild)
 
-        document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
-        document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
-        document.getElementById(`${listItem.id}Up`).addEventListener("click", app.moveUp)
-        document.getElementById(`${listItem.id}Down`).addEventListener("click", app.moveDown)
+        // document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
+        // document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
+        // document.getElementById(`${listItem.id}Up`).addEventListener("click", app.moveUp)
+        // document.getElementById(`${listItem.id}Down`).addEventListener("click", app.moveDown)
 
         ++this.max
         f.reset()
@@ -78,7 +72,7 @@ const app = {
         up.textContent = "Up"
         up.className = 'primary button'
         up.id = `${item.textContent}Up`
-        
+
         return up 
     },
 
@@ -127,4 +121,5 @@ const app = {
 app.init({
     formSelector: 'form#flick-form',
     listSelector: '#flick-list',
+    templateSelector: ".flick.template"
 })
