@@ -78,6 +78,7 @@ const app = {
         up.textContent = "Up"
         up.className = 'primary button'
         up.id = `${item.textContent}Up`
+        
         return up 
     },
 
