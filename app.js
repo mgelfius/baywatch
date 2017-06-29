@@ -18,7 +18,7 @@ const app = {
         item.textContent = flick.name
         item.dataset.id = flick.id
 
-        this.flicks.push(flick)
+        this.flicks.unshift(flick)
         item.style.backgroundColor = 'white'
         const fav = this.renderFavButton(item)
         const del = this.renderDelButton(item)
@@ -42,7 +42,7 @@ const app = {
         }
 
         const listItem = this.renderListItem(flick)
-        this.list.appendChild(listItem)
+        this.list.insertBefore(listItem, this.list.firstElementChild)
 
         document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
         document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
