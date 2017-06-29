@@ -14,25 +14,19 @@ const app = {
 
     renderListItem(flick){
         const item = document.createElement('li')
+        item.id = flick.name
         item.textContent = flick.name
         this.flicks[flick.id - 1] = flick.name
-        item.backgroundColor = 'white'
-        item.id = `flick${flick.id}`
-        const fav = this.renderFavButton()
-        
-        const del = this.renderDelButton()
-        
-        const up = this.renderUpButton()
-        
-        const down = this.renderDownButton()
+        item.style.backgroundColor = 'white'
+        const fav = this.renderFavButton(item)
+        const del = this.renderDelButton(item)
+        const up = this.renderUpButton(item)
+        const down = this.renderDownButton(item)
 
-        
         item.appendChild(fav)
         item.appendChild(up)
         item.appendChild(down)
         item.appendChild(del)
-
-        document.querySelector('#flick-list').addEventListener('click', this.favorite(item))
 
         return item
     },
@@ -47,57 +41,71 @@ const app = {
 
         const listItem = this.renderListItem(flick)
         this.list.appendChild(listItem)
-        
+
+        document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
+        document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
+
         ++this.max
     },
 
-    renderFavButton(){
+    renderFavButton(item){
         const fav = document.createElement('button')
         fav.textContent = "Fav"
         fav.className = "warning button"
+        fav.id = `${item.textContent}Fav`
         return fav
     },
 
-    renderDelButton(){
+    renderDelButton(item){
         const del = document.createElement('button')
         del.textContent = "Delete"
         del.className = 'alert button'
+        del.id = `${item.textContent}Del`
         return del 
     },
 
-    renderUpButton(){
+    sayYeah(){
+        alert("Yeah!")
+    },
+
+    renderUpButton(item){
         const up = document.createElement('button')
         up.textContent = "Up"
         up.className = 'primary button'
+        up.id = `${item.textContent}Up`
         return up 
     },
 
-    renderDownButton(){
+    renderDownButton(item){
         const down = document.createElement('button')
         down.textContent = "Down"
         down.className = 'secondary button'
+        down.id = `${item.textContent}Down`
         return down 
     },
 
     favorite(item){
-        if(item.style.backgroundColor){
-            if(item.style.backgroundColor === white){
+        console.log(this.style.backgroundColor)
+        if(this.style.backgroundColor){
+            if(this.style.backgroundColor === "gold"){
                 console.log('Shit')
-                item.style.backgroundColor = 'white'
+                this.textContent = "Fav"
+                this.style.backgroundColor = '#ffae00'
             }else{
                 console.log('Yay!')
-                item.style.backgroundColor = 'gold'
+                this.textContent = "Faved!"
+                this.style.backgroundColor = 'gold'
             }
         }else{
-            item.style.backgroundColor = 'gold'
+            this.textContent = "Faved!"
+            this.style.backgroundColor = 'gold'
         }
-        console.log('Yay?')
-        
     },
 
     delete(item){
-        app.flicks.splice(item.id - 1, 1)
-        
+        console.log(app.flicks)
+        app.flicks.splice(this.id - 1, 1)
+        console.log(app.flicks)
     },
 }
 
