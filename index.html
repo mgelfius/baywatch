@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,19 +11,35 @@
   </head>
   <body>
     <div class="grid-x">
-        <div class="medium-8 medium-offset-2 cell">
-            <h1>Michael Baywatch</h1>
-            <form id="flick-form">
-                <div class="input-group">
-                    <input type="text" class="input-group-field" name="flickName" placeholder="Name a flick">
-                    <div class="input-group-button">
-                        <button type="submit" class="success button">Add Flick</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <ul id="flick-list"></ul>
+      <div class="medium-8 medium-offset-2 cell">
+        <h1><b>Michael Baywatch</b></h1>
+        <form id="flick-form">
+          <div class="input-group">
+            <input
+              type="text"
+              class="input-group-field"
+              name="flickName"
+              placeholder="Name a flick"
+            >
+            <div class="input-group-button">
+              <button
+                class="success button"
+                type="submit"
+              >
+                Add flick
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+
+    <div class="grid-x">
+      <div class="medium-8 medium-offset-2 cell">
+        <ul id="flick-list"></ul>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

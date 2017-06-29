@@ -19,13 +19,21 @@ const app = {
         item.backgroundColor = 'white'
         item.id = `flick${flick.id}`
         const fav = this.renderFavButton()
+        
         const del = this.renderDelButton()
+        
         const up = this.renderUpButton()
+        
         const down = this.renderDownButton()
+
+        
         item.appendChild(fav)
         item.appendChild(up)
         item.appendChild(down)
         item.appendChild(del)
+
+        document.querySelector('#flick-list').addEventListener('click', this.favorite(item))
+
         return item
     },
 
@@ -39,7 +47,7 @@ const app = {
 
         const listItem = this.renderListItem(flick)
         this.list.appendChild(listItem)
-
+        
         ++this.max
     },
 
@@ -60,7 +68,7 @@ const app = {
     renderUpButton(){
         const up = document.createElement('button')
         up.textContent = "Up"
-        up.className = 'secondary button'
+        up.className = 'primary button'
         return up 
     },
 
@@ -83,6 +91,12 @@ const app = {
         }else{
             item.style.backgroundColor = 'gold'
         }
+        console.log('Yay?')
+        
+    },
+
+    delete(item){
+        app.flicks.splice(item.id - 1, 1)
         
     },
 }
