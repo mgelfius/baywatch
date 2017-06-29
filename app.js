@@ -104,8 +104,9 @@ const app = {
 
     delete(item){
         console.log(app.flicks)
-        app.flicks.splice(this.id - 1, 1)
-        console.log(app.flicks)
+        this.parentNode.parentNode.removeChild(this.parentNode)
+        //app.flicks.splice(this.id - 1, 1)
+        //console.log(app.flicks)
     },
 }
 
