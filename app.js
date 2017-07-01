@@ -106,6 +106,8 @@ const app = {
         saveButton.addEventListener('click', app.saveText.bind(this, text))
         listItem.addEventListener('blur', function(){
             saveButton.classList.add('template')
+            const textBox = document.querySelector('.flick-name')
+            textBox.textContent = text
         }, true)
     },
 
