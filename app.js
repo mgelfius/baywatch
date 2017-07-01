@@ -25,6 +25,12 @@ const app = {
 
         item.querySelector("button.fav")
             .addEventListener('click', this.favorite.bind(this, flick))
+
+        item.querySelector("button.up")
+            .addEventListener('click', this.moveUp.bind(this, flick))
+
+        item.querySelector("button.down")
+            .addEventListener('click', this.moveDown.bind(this, flick))
         item.dataset.id = flick.id
 
         this.flicks.unshift(flick)
@@ -50,7 +56,6 @@ const app = {
 
     favorite(flick, ev){
         const listItem = ev.target.closest('.flick')
-        console.log(listItem)
         flick.fav = listItem.classList.toggle('fav')
     },
 
@@ -61,11 +66,30 @@ const app = {
         this.flicks.splice(i, 1)
     },
 
-    moveUp(ev){
-
+    moveUp(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        const i = this.flicks.indexOf(flick)
+        if(i === 0){
+            alert("Nope")
+        }else{
+            const hold = this.flicks[i]
+            this.flicks[i] = this.flicks[i - 1]
+            this.flicks[i - 1] = hold
+            this.list.insertBefore(listItem, listItem.previousSibling)
+        }
     },
 
-    moveDown(ev){
+    moveDown(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        const i = this.flicks.indexOf(flick)
+        if(app.flicks[i+1] === undefined){
+            alert("Nope")
+        }else{
+            const hold = this.flicks[i]
+            this.flicks[i] = this.flicks[i + 1]
+            this.flicks[i + 1] = hold
+            this.list.insertBefore(listItem.nextSibling, listItem)
+        }
 
     },
 }
