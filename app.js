@@ -20,6 +20,11 @@ const app = {
         item.querySelector('.flick-name')
             .textContent = flick.name
         
+        item.querySelector('.flick-name').contentEditable = true;
+
+        item.querySelector('.flick-name')
+            .addEventListener('click', this.editText.bind(this, flick))
+
         item.querySelector("button.remove")
             .addEventListener('click', this.delete.bind(this, flick))
 
@@ -91,6 +96,27 @@ const app = {
             this.list.insertBefore(listItem.nextSibling, listItem)
         }
 
+    },
+
+    editText(ev){
+        const saveButton = document.querySelector('.save')
+        saveButton.classList.remove('template')
+        const text = ev.name
+        const listItem = document.querySelector(`#${text}`)
+        saveButton.addEventListener('click', app.saveText.bind(this, text))
+        listItem.addEventListener('blur', function(){
+            saveButton.classList.add('template')
+        }, true)
+    },
+
+    saveText(text, ev){
+        const f = ev.target
+        f.classList.add('template')
+        const textBox = document.querySelector('.auto')
+        const i = app.flicks.indexOf(text) + 1
+        app.flicks[i].name = textBox.textContent
+        const listItem = document.querySelector(`#${text}`)
+        listItem.id = textBox.textContent
     },
 }
 
