@@ -99,36 +99,24 @@ const app = {
     },
 
     editText(ev){
+        /*
         const saveButton = document.querySelector('.save')
-        saveButton.classList.remove('template')
+        saveButton.classList.remove('template')*/
         const text = ev.name
+        console.log(text)
         const listItem = document.querySelector(`#${text}`)
-        let saved = false
-        saved = saveButton.addEventListener('mousedown', app.saveText.bind(this, text, saved))
-        if(saved === false){
-        listItem.addEventListener('blur', app.removeText)
-        }
+        listItem.children[0].addEventListener('blur', app.saveText.bind(this, text))
     },
 
-    saveText(text, saved, ev){
-        saved = true
-        const f = ev.target
-        f.classList.add('template')
+    saveText(text, ev){
+        console.log(ev.target)
+        
         const textBox = document.querySelector('.auto')
         const listItem = document.querySelector(`#${text}`)
-        listItem.id = textBox.textContent
         const i = app.flicks.indexOf(text) + 1
         app.flicks[i].name = textBox.textContent
-        return saved
+        listItem.id = textBox.textContent
     },
-
-    removeText(ev){
-        const saveButton = document.querySelector('.save')
-        saveButton.classList.add('template')
-        const textBox = document.querySelector('.flick-name')
-        textBox.textContent = text
-        console.log('yo')
-    }
 }
 
 app.init({
