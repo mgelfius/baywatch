@@ -21,11 +21,13 @@ const app = {
             .textContent = flick.name
         
         item.querySelector("button.remove")
-            .addEventListener('click', this.delete)
+            .addEventListener('click', this.delete.bind(this, flick))
+
+        item.querySelector("button.fav")
+            .addEventListener('click', this.favorite.bind(this, flick))
         item.dataset.id = flick.id
 
         this.flicks.unshift(flick)
-        item.style.backgroundColor = 'white'
     
         return item
     },
@@ -36,79 +38,27 @@ const app = {
         const flick = {
             id: this.max + 1,
             name: f.flickName.value,
+            fav: false,
         }
 
         const listItem = this.renderListItem(flick)
         this.list.insertBefore(listItem, this.list.firstElementChild)
 
-        // document.getElementById(`${listItem.id}Fav`).addEventListener("click", app.favorite)
-        // document.getElementById(`${listItem.id}Del`).addEventListener("click", app.delete)
-        // document.getElementById(`${listItem.id}Up`).addEventListener("click", app.moveUp)
-        // document.getElementById(`${listItem.id}Down`).addEventListener("click", app.moveDown)
-
         ++this.max
         f.reset()
     },
 
-    // renderFavButton(item){
-    //     const fav = document.createElement('button')
-    //     fav.textContent = "Fav"
-    //     fav.className = "warning button"
-    //     fav.id = `${item.textContent}Fav`
-    //     return fav
-    // },
-
-    // renderDelButton(item){
-    //     const del = document.createElement('button')
-    //     del.textContent = "Delete"
-    //     del.className = 'alert button'
-    //     del.id = `${item.textContent}Del`
-    //     return del 
-    // },
-
-    sayYeah(){
-        alert("Yeah!")
+    favorite(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        console.log(listItem)
+        flick.fav = listItem.classList.toggle('fav')
     },
 
-    // renderUpButton(item){
-    //     const up = document.createElement('button')
-    //     up.textContent = "Up"
-    //     up.className = 'primary button'
-    //     up.id = `${item.textContent}Up`
-
-    //     return up 
-    // },
-
-    // renderDownButton(item){
-    //     const down = document.createElement('button')
-    //     down.textContent = "Down"
-    //     down.className = 'secondary button'
-    //     down.id = `${item.textContent}Down`
-    //     return down 
-    // },
-
-    favorite(ev){
-        console.log(this.style.backgroundColor)
-        if(this.style.backgroundColor){
-            if(this.style.backgroundColor === "gold"){
-                console.log('Shit')
-                this.textContent = "Fav"
-                this.style.backgroundColor = '#ffae00'
-            }else{
-                console.log('Yay!')
-                this.textContent = "Faved!"
-                this.style.backgroundColor = 'gold'
-            }
-        }else{
-            this.textContent = "Faved!"
-            this.style.backgroundColor = 'gold'
-        }
-    },
-
-    delete(ev){
-        console.log(app.flicks)
+    delete(flick, ev){
         const listItem = ev.target.closest('.flick')
         listItem.remove()
+        const i = this.flicks.indexOf(flick)
+        this.flicks.splice(i, 1)
     },
 
     moveUp(ev){
@@ -123,5 +73,5 @@ const app = {
 app.init({
     formSelector: 'form#flick-form',
     listSelector: '#flick-list',
-    templateSelector: ".flick.template"
+    templateSelector: '.flick.template'
 })

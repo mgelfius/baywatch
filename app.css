@@ -16,6 +16,14 @@ h1 small{
     margin-bottom: 0;
 }
 
+.template{
+    display: none;
+}
+
+.flick.fav{
+    background-color: gold;
+}
+
 .flick-name{
     margin: 0 0.75rem;
 }
@@ -26,8 +34,4 @@ h1 small{
 
 .flick .button-group .button{
     margin-bottom: 0;
-}
-
-.template{
-    display: none;
 }
