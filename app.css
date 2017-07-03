@@ -1,19 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
 
+html {
+  background: linear-gradient(blue, orange) no-repeat center center fixed; 
+  background-size: cover;
+}
+
+body{
+    background: transparent
+
+}
+
 h1{
     font-family: 'Alfa Slab One', serif;
     color: orange;
-    text-shadow: 0.2rem 0.2rem teal;
+    text-shadow: 0.2rem 0.2rem teal,
+                0.4rem 0.4rem black;
 }
 
 h1 small{
-    color: teal;
-    text-shadow: 0.2rem 0.2rem orange;
+    color: orange;
+    text-shadow: 0.2rem 0.2rem teal,
+                0.4rem 0.4rem black;
     font-size: 50%;
 }
 
 #flick-list{
     margin-bottom: 0;
+}
+
+.list-container{
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 10px #4c4c4c;
 }
 
 .template{

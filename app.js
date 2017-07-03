@@ -1,10 +1,11 @@
 const app = {
     init(selectors){
+        //this.flicks = localStorage.getItem('flicks')
         this.flicks = []
         this.max = 0;
+        //this.list = localStorage.getItem('list')
         this.list = document.querySelector(selectors.listSelector)
         this.template = document.querySelector(selectors.templateSelector)
-        
         document
             .querySelector(selectors.formSelector)
             .addEventListener(
@@ -37,9 +38,7 @@ const app = {
         item.querySelector("button.down")
             .addEventListener('click', this.moveDown.bind(this, flick))
         item.dataset.id = flick.id
-
         this.flicks.unshift(flick)
-    
         return item
     },
 
@@ -54,7 +53,8 @@ const app = {
 
         const listItem = this.renderListItem(flick)
         this.list.insertBefore(listItem, this.list.firstElementChild)
-
+        localStorage.setItem('flicks', app.flicks)
+        localStorage.setItem('list', this.list)
         ++this.max
         f.reset()
     },
